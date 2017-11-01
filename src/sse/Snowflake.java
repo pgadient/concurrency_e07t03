@@ -15,6 +15,15 @@ public class Snowflake {
 	private int outOfViewLimit;
 	private float horizontalMovementAmplifier;
 	
+	/**
+	 * Snowflake Simulation Environment (SSE)
+	 * November 2017
+	 * 
+	 * @author Pascal Gadient (gadient@inf.unibe.ch) 
+	 * 
+	 * SCG University of Bern, Concurrency Course
+	 * 
+	 */
 	public Snowflake(int levelOfDetail, int snowflakeSize, int xPos, float gravity, Graphics2D g, int frameHeight) {
 		Random r = new Random(System.nanoTime());
 		r.nextFloat(); // better results (shouldn't be)

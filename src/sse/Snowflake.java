@@ -65,6 +65,7 @@ public class Snowflake {
 	 * @param level represents the level of detail, i.e. fractal iterations
 	 */
 	private void koch(Graphics g, double x1, double y1, double x2, double y2, int level) {
+		// von Koch algorithm
 		double a1, b1, a2, b2, a3, b3;
 		
 		if (level > 1) {

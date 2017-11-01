@@ -63,6 +63,7 @@ public class SnowflakeRenderer {
 		int currentSnowflakes = 0;
 
 		while (true) {
+			// introduces new snowflakes when we finally reached the nth run of draw calls
 			if ((currentBatch % this.addSnowflakesEachNthRound) == 0) {
 				createNewSnowflakes(g);
 				currentSnowflakes = currentSnowflakes + this.snowflakeIncreaseRate;
@@ -73,11 +74,14 @@ public class SnowflakeRenderer {
 			}
 			
 			currentBatch++;
-			
+
+			// clean canvas
 			this.frame.paintComponents(g);
 			// ToDo:
 			// Here we should let all snowflakes draw themselves and wait until they finished redrawing, before we progress. So this smells like time for more synchronisation :)
 			
+			
+			// sleep some time before we start the next cycle
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {

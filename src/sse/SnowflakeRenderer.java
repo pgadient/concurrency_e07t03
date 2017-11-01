@@ -4,8 +4,10 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.net.URL;
 import java.util.Random;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
@@ -23,10 +25,10 @@ public class SnowflakeRenderer {
 	private int levelOfDetail = 3;				// how many fractal iterations we should perform (greatly impacts performance!)
 	private int snowflakeSize = 30;				// how large the snowflakes should be
 	private float gravity = 9.81f;				// how fast the snowflakes should fall to the bottom
-	private int frameHeight = 500;				// Window height
-	private int frameWidth = 500;				// Window width
-	private int snowflakeIncreaseRate = 1;		// How many snowflakes will be added each addSnowflakesEachNthRound
-	private int addSnowflakesEachNthRound = 7;	// Adds [snowflakeIncreaseRate] snowflakes after each ...th  snowflake draw call session (that should be synchronized by you :)
+	private int frameHeight = 500;				// window height
+	private int frameWidth = 500;				// window width
+	private int snowflakeIncreaseRate = 1;		// how many snowflakes will be added each addSnowflakesEachNthRound
+	private int addSnowflakesEachNthRound = 7;	// adds [snowflakeIncreaseRate] snowflakes after each ...th  snowflake draw call session (that should be synchronized by you :)
 	
 	public static void main(String[] args) {
 		SnowflakeRenderer instance = new SnowflakeRenderer();
@@ -35,6 +37,7 @@ public class SnowflakeRenderer {
 	
 	public SnowflakeRenderer() {
 		this.frame = new JFrame();
+		this.frame.setTitle("SCG - Snowflake Simulation Environment (SSE)");
 		this.frame.setBackground(new Color(255, 255, 255));
 		this.frame.setSize(this.frameWidth, this.frameHeight);
 		this.frame.setVisible(true);
@@ -45,6 +48,10 @@ public class SnowflakeRenderer {
                  System.exit(0);
              }
          } );
+		
+		URL iconURL = getClass().getResource("/sse/scg-logo.png");
+		ImageIcon icon = new ImageIcon(iconURL);
+		this.frame.setIconImage(icon.getImage());
 	}
 	
 	private void letItSnow() {

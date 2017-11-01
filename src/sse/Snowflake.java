@@ -38,7 +38,7 @@ public class Snowflake {
 	}
 	
 	public void render() {
-			int x1 = (int) (this.horizontalMovementAmplifier * Math.sin(this.yPos / this.gravity)) + this.xPos;
+			int x1 = (int) (this.horizontalMovementAmplifier * Math.sin((this.yPos / this.gravity)) / 2) + this.xPos;
 			int x2 = x1 + this.snowflakeSize;
 			
 			int y1 = this.yPos;

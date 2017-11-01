@@ -54,6 +54,9 @@ public class SnowflakeRenderer {
 		this.frame.setIconImage(icon.getImage());
 	}
 	
+	/**
+	 * As it says: Let it snow! :)
+	 */
 	private void letItSnow() {
 		Graphics2D g = (Graphics2D) this.frame.getGraphics();
 		int currentBatch = 0;
@@ -83,6 +86,10 @@ public class SnowflakeRenderer {
 		}
 	}
 	
+	/**
+	 * Here we instantiate the snowflakes.
+	 * @param g is the Graphics2D object to paint on
+	 */
 	private void createNewSnowflakes(Graphics2D g) {
 		for (int i = 0; i < this.snowflakeIncreaseRate; i++) {
 			Random r = new Random();

@@ -37,6 +37,9 @@ public class Snowflake {
 		this.horizontalMovementAmplifier = r.nextFloat() * 10 + 1;
 	}
 	
+	/**
+	 * Renders the snowflake to the assigned canvas.
+	 */
 	public void render() {
 			int x1 = (int) (this.horizontalMovementAmplifier * Math.sin((this.yPos / this.gravity)) / 2) + this.xPos;
 			int x2 = x1 + this.snowflakeSize;
@@ -52,8 +55,16 @@ public class Snowflake {
 			koch(this.g, x2, y2, p3.getX(), p3.getY(), this.levelOfDetail);
 	}
 	
+	/**
+	 * Calculates the von Koch fractal and performs the actual drawing.
+	 * @param g Graphics2D object that should be painted
+	 * @param x1 start x coordinate of the fractal to generate
+	 * @param y1 start y coordindate of the fractal to generate
+	 * @param x2 end x coordinate of the fractal to generate
+	 * @param y2 end y coordinate of the fractal to generate
+	 * @param level represents the level of detail, i.e. fractal iterations
+	 */
 	private void koch(Graphics g, double x1, double y1, double x2, double y2, int level) {
-		
 		double a1, b1, a2, b2, a3, b3;
 		
 		if (level > 1) {
@@ -73,6 +84,14 @@ public class Snowflake {
 		}
 	}
 	
+	/**
+	 * Calculates the 3rd point that the two other fractal lines should go to (3 fractal lines are needed to create the snowflake, has triangle like shape with no iteration (level of detail = 0).
+	 * @param x1 x coordinate of the first point of the final triangle
+	 * @param y1 y coordinate of the first point of the final triangle
+	 * @param x2 x coordinate of the second point of the final triangle
+	 * @param y2 y coordinate of the second point of the final triangle
+	 * @return Point2D.Double containing the 3rd point of the final triangle
+	 */
 	private Point2D.Double get3rdStartingPoint(double x1, double y1, double x2, double y2) {
 		double length = x2 - x1;
 		double height = (Math.sqrt(3) / 2) * length;
@@ -80,6 +99,9 @@ public class Snowflake {
 		return new Point2D.Double(x1 + length / 2, y1 + height);
 	}
 
+	/**
+	 * Main render loop of the snowflake threads.
+	 */
 	public void run() {
 		while (!isOutOfView()) {
 			
@@ -92,6 +114,10 @@ public class Snowflake {
 		System.out.println("A Snowflake reaches the end of life.");
 	}
 	
+	/**
+	 * Lets snowflakes die as soon as they are out of the view.
+	 * @return boolean if snowflake is still visible 
+	 */
 	private boolean isOutOfView() {
 		if (this.yPos > this.outOfViewLimit) {
 			return true;

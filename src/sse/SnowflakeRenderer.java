@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 
 /**
  * Snowflake Simulation Environment (SSE)
- * November 2017
+ * November 2019
  * 
  * @author Pascal Gadient (gadient@inf.unibe.ch) 
  * 
@@ -24,11 +24,11 @@ public class SnowflakeRenderer {
 	private JFrame frame;
 	private int levelOfDetail = 3;				// how many fractal iterations we should perform (greatly impacts performance!)
 	private int snowflakeSize = 30;				// how large the snowflakes should be
-	private float gravity = 9.81f;				// how fast the snowflakes should fall to the bottom
+	private float gravity = 9.81f;				// how fast the snowflakes should fall to the ground
 	private int frameHeight = 500;				// window height
 	private int frameWidth = 500;				// window width
 	private int snowflakeIncreaseRate = 1;		// how many snowflakes will be added each addSnowflakesEachNthRound
-	private int addSnowflakesEachNthRound = 7;	// adds [snowflakeIncreaseRate] snowflakes after each ...th  snowflake draw call session (that should be synchronized by you :)
+	private int addSnowflakesEachNthRound = 7;	// adds [snowflakeIncreaseRate] snowflakes after each ...th  snowflake draw call session (each drawcall session should be synchronized by you :)
 	
 	public static void main(String[] args) {
 		SnowflakeRenderer instance = new SnowflakeRenderer();
@@ -75,10 +75,18 @@ public class SnowflakeRenderer {
 			
 			currentBatch++;
 
-			// clean canvas
+			// clean the canvas
 			this.frame.paintComponents(g);
+			
 			// ToDo:
-			// Here we should let all snowflakes draw themselves and wait until they finished redrawing, before we progress. So this smells like time for more synchronisation :)
+			// Here we should let all snowflakes draw themselves and wait until they finished redrawing, before we progress. So this smells like time for synchronization! :)
+			
+			
+			
+			
+			
+			
+			
 			
 			
 			// sleep some time before we start the next cycle
@@ -102,11 +110,11 @@ public class SnowflakeRenderer {
 			
 			s.run();
 			// ToDo:
-			// Instead of s.run() you should make Snowflake a Runnable, i.e. be able to perform: 
+			// Instead of s.run() you should make Snowflake a Runnable, i.e., you should be able to perform: 
 			// Thread t = new Thread(s);
 			// t.start();
 			//
-			// Then the Snowflake should draw itself on the Graphics2D object without any furter interaction.
+			// Then the snowflake should draw itself on the Graphics2D object without any further interaction.
 		}
 	}
 }

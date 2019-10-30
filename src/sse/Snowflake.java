@@ -17,7 +17,7 @@ public class Snowflake {
 	
 	/**
 	 * Snowflake Simulation Environment (SSE)
-	 * November 2017
+	 * November 2019
 	 * 
 	 * @author Pascal Gadient (gadient@inf.unibe.ch) 
 	 * 
@@ -112,7 +112,7 @@ public class Snowflake {
 			this.render();
 		}
 		
-		System.out.println("A Snowflake reaches the end of life.");
+		System.out.println("A Snowflake reaches end of life.");
 	}
 	
 	/**
